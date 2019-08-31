@@ -5,6 +5,7 @@ using MyLeasing.Web.Data;
 using MyLeasing.Web.Data.Entities;
 using MyLeasing.Web.Helpers;
 using MyLeasing.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,13 +17,19 @@ namespace MyLeasing.Web.Controllers
     {
         private readonly DataContext _dataContext;
         private readonly IUserHelper _userHelper;
+        private readonly ICombosHelper _combosHelper;
+        private readonly IConverterHelper _converterHelper;
 
         public OwnersController(
             DataContext dataContext,
-            IUserHelper userHelper)
+            IUserHelper userHelper,
+            ICombosHelper combosHelper,
+            IConverterHelper converterHelper)
         {
             _dataContext = dataContext;
             _userHelper = userHelper;
+            _combosHelper = combosHelper;
+            _converterHelper = converterHelper;
         }
 
         // GET: Owners
@@ -50,6 +57,7 @@ namespace MyLeasing.Web.Controllers
                 .ThenInclude(p => p.Lessee)
                 .ThenInclude(l => l.User)
                 .FirstOrDefaultAsync(o => o.Id == id);
+
             if (owner == null)
             {
                 return NotFound();
@@ -57,7 +65,6 @@ namespace MyLeasing.Web.Controllers
 
             return View(owner);
         }
-
 
         public IActionResult Create()
         {
@@ -198,5 +205,44 @@ namespace MyLeasing.Web.Controllers
         {
             return _dataContext.Owners.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> AddProperty(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var owner = await _dataContext.Owners.FindAsync(id);
+            if (owner == null)
+            {
+                return NotFound();
+            }
+
+            var model = new PropertyViewModel
+            {
+                OwnerId = owner.Id,
+                PropertyTypes = _combosHelper.GetComboPropertyTypes()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProperty(PropertyViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var property = await _converterHelper.ToPropertyAsync(model, true);
+                _dataContext.Properties.Add(property);
+                await _dataContext.SaveChangesAsync();
+
+                return RedirectToAction($"Details/{ model.OwnerId}");
+            }
+
+            return View(model);
+        }
+
+       
     }
 }
