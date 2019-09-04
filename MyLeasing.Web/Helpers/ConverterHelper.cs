@@ -51,7 +51,7 @@ namespace MyLeasing.Web.Helpers
                 LesseeId = contract.Lessee.Id,
                 Lessees = _combosHelper.GetComboLessees(),
                 OwnerId = contract.Owner.Id,
-                PropertyId = contract.Id
+                PropertyId = contract.Property.Id
             };
         }
 
