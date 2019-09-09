@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace MyLeasing.Web.Data.Entities
 {
@@ -11,7 +10,7 @@ namespace MyLeasing.Web.Data.Entities
         public ICollection<Property> Properties { get; set; }
 
         public ICollection<Contract> Contracts { get; set; }
-        
+
 
     }
 }
