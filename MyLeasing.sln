@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.89
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLeasing.Common", "MyLeasing.Common\MyLeasing.Common.csproj", "{8960910C-5CAD-4760-A07B-711143FE9CED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLeasing.Common", "MyLeasing.Common\MyLeasing.Common.csproj", "{8960910C-5CAD-4760-A07B-711143FE9CED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLeasing.Web", "MyLeasing.Web\MyLeasing.Web.csproj", "{87F1E77A-E14E-4BEE-B97C-89F69BF654D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLeasing.Web", "MyLeasing.Web\MyLeasing.Web.csproj", "{87F1E77A-E14E-4BEE-B97C-89F69BF654D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
