@@ -22,8 +22,9 @@
         <ActivityIndicator 
             IsRunning="{Binding IsRunning}"
             VerticalOptions="CenterAndExpand"/>
-        <Button 
+        <Button
             Command="{Binding LoginCommand}"
+            IsEnabled="{Binding IsEnabled}"
             Text="Login"/>
     </StackLayout>
 </ContentPage>
