@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
   </ItemGroup>
 
   <ItemGroup>
